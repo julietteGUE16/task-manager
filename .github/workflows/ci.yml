@@ -12,8 +12,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: install snyk
+        run: npm install -g snyk
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -28,14 +35,9 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Install & Authenticate Snyk
-        uses: snyk/actions/setup@v2
-        with:
-          version: 'latest'
+      - name: Scan backend Python with Snyk
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
-      - name: Scan backend Python with Snyk
         run: |
           cd backend
           source .venv/bin/activate
@@ -47,8 +49,7 @@ jobs:
     needs: backend-snyk
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
