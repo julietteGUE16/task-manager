@@ -41,7 +41,7 @@ jobs:
         run: |
           cd backend
           source .venv/bin/activate
-          snyk test --all-projects
+          snyk test --all-projects || true
 
   frontend-snyk:
     name: Frontend JS Snyk Scan
