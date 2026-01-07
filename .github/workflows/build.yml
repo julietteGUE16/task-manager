@@ -75,7 +75,7 @@ jobs:
   sonar:
     name: SonarQube Analysis
     runs-on: ubuntu-latest
-    needs: frontend-snyk
+    
     steps:
       - uses: actions/checkout@v3
       - uses: SonarSource/sonarqube-scan-action@v6
