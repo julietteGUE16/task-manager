@@ -92,7 +92,7 @@ jobs:
   docker-build-and-scan:
     name: Build and scan Docker backend
     runs-on: ubuntu-latest
-    needs: sonar
+
     steps:
       - uses: actions/checkout@v3
 
