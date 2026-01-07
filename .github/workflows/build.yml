@@ -1,4 +1,4 @@
-name: CI/CD Task Manager
+name: CI/CD 
 
 on:
   push:
@@ -75,7 +75,7 @@ jobs:
   sonar:
     name: SonarQube Analysis
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v3
       - uses: SonarSource/sonarqube-scan-action@v6
